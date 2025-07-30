@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>80 години Димитровград</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("DSC_0159.JPG");
+      background-size: cover;
+      background-position: center;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backdrop-filter: brightness(0.8);
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    #countdown {
+      font-size: 2em;
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      color: #00c0ff;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>80 години Димитровград</h1>
+  <div id="countdown"></div>
+  <a href="https://www.dimitrovgrad.bg" target="_blank">
+    Официален сайт на Община Димитровград
+  </a>
+
+  <script>
+    const targetDate = new Date("2027-09-02T00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "Честит празник на Димитровград!";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days} дни, ${hours} часа, ${minutes} минути, ${seconds} секунди`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  </script>
+
+  <audio id="bgmusic" src="zdravey-dimitrovgrad.mp3.mp3"></audio>
+  <button onclick="document.getElementById('bgmusic').play()" style="margin-top: 20px; padding: 10px 20px; font-size: 1em; background-color: #00c0ff; color: white; border: none; border-radius: 5px; cursor: pointer; text-shadow: 1px 1px 2px #000;">
+    Пусни музика
+  </button>
+
+</body>
+</html>
